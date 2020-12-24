@@ -1,9 +1,9 @@
-import 'package:admob_flutter/src/admob_targeting_info.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'admob_banner_controller.dart';
+import 'admob_targeting_info.dart';
 import 'admob_banner_size.dart';
 import 'admob_events.dart';
 

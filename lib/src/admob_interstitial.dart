@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 import 'admob_event_handler.dart';
+import 'admob_targeting_info.dart';
 
 class AdmobInterstitial extends AdmobEventHandler {
   static const MethodChannel _channel =
@@ -12,10 +13,12 @@ class AdmobInterstitial extends AdmobEventHandler {
   MethodChannel _adChannel;
   final String adUnitId;
   final void Function(AdmobAdEvent, Map<String, dynamic>) listener;
+  final MobileAdTargetingInfo targetingInfo;
 
   AdmobInterstitial({
     @required this.adUnitId,
     this.listener,
+    this.targetingInfo,
   }) : super(listener) {
     id = hashCode;
     if (listener != null) {
@@ -36,6 +39,7 @@ class AdmobInterstitial extends AdmobEventHandler {
     await _channel.invokeMethod('load', <String, dynamic>{
       'id': id,
       'adUnitId': adUnitId,
+      'targetingInfo': targetingInfo?.toMap,
     });
 
     if (listener != null) {
