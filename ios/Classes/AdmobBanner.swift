@@ -59,6 +59,7 @@ class AdmobBanner : NSObject, FlutterPlatformView {
         
         // Defaults to test Id's from: https://developers.google.com/admob/ios/banner
         adView.adUnitID = args["adUnitId"] as? String ?? "ca-app-pub-3940256099942544/2934735716"
+        let targetingInfo = args["targetingInfo"]
         channel.setMethodCallHandler { [weak self] (flutterMethodCall: FlutterMethodCall, flutterResult: FlutterResult) in
             switch flutterMethodCall.method {
             case "setListener":
@@ -70,15 +71,16 @@ class AdmobBanner : NSObject, FlutterPlatformView {
             }
         }
 
-        let request = GADRequest()
+//        let request = GADRequest()
+        let request = FLTRequestFactory(targetingInfo: targetingInfo as! [AnyHashable : Any])
 
-        if ((args["nonPersonalizedAds"] as? Bool) == true) {
-            let extras = GADExtras()
-            extras.additionalParameters = ["npa": "1"]
-            request.register(extras)
-        }
+//        if ((args["nonPersonalizedAds"] as? Bool) == true) {
+//            let extras = GADExtras()
+//            extras.additionalParameters = ["npa": "1"]
+//            request.createRequest().register(extras)
+//        }
 
-        adView.load(request)
+        adView.load(request.createRequest())
 
         return adView
     }
