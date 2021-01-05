@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:admob_flutter/src/admob_targetinfo.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +15,7 @@ class AdmobBanner extends StatefulWidget {
   final void Function(AdmobAdEvent, Map<String, dynamic>) listener;
   final void Function(AdmobBannerController) onBannerCreated;
   final bool nonPersonalizedAds;
+  final MobileAdTargetingInfo _targetingInfo;
 
   AdmobBanner({
     Key key,
@@ -22,7 +24,9 @@ class AdmobBanner extends StatefulWidget {
     this.listener,
     this.onBannerCreated,
     this.nonPersonalizedAds = false,
-  }) : super(key: key);
+    MobileAdTargetingInfo targetingInfo,
+  })  : _targetingInfo = targetingInfo ?? const MobileAdTargetingInfo(),
+        super(key: key);
 
   static String get testAdUnitId {
     if (Platform.isAndroid) {
@@ -108,5 +112,6 @@ class _AdmobBannerState extends State<AdmobBanner> {
     'adUnitId': widget.adUnitId,
     'adSize': widget.adSize.toMap,
     'nonPersonalizedAds': widget.nonPersonalizedAds,
+    'targetingInfo': widget._targetingInfo?.toJson(),
   };
 }
