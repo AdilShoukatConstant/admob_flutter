@@ -1,22 +1,21 @@
 import 'dart:async';
-import 'dart:io' show Platform;
+import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:meta/meta.dart';
 import 'admob_event_handler.dart';
 
 class AdmobInterstitial extends AdmobEventHandler {
   static const MethodChannel _channel =
       MethodChannel('admob_flutter/interstitial');
 
-  int id;
-  MethodChannel _adChannel;
+  late int id;
+  late MethodChannel _adChannel;
   final String adUnitId;
-  final void Function(AdmobAdEvent, Map<String, dynamic>) listener;
+  final void Function(AdmobAdEvent, Map<String, dynamic>?)? listener;
   final bool nonPersonalizedAds;
 
   AdmobInterstitial({
-    @required this.adUnitId,
+    required this.adUnitId,
     this.listener,
     this.nonPersonalizedAds = false,
   }) : super(listener) {
@@ -37,7 +36,7 @@ class AdmobInterstitial extends AdmobEventHandler {
     }
   }
 
-  Future<bool> get isLoaded async {
+  Future<bool?> get isLoaded async {
     final result = await _channel.invokeMethod('isLoaded', _channelMethodsArguments);
     return result;
   }

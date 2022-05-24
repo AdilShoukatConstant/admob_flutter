@@ -1,3 +1,16 @@
+## [2.0.0] - 2021/12/19
+- Migrate Android to v2 embedding [287](https://github.com/kmcgill88/admob_flutter/issues/287)
+- Update Bitrise build machine to Xcode 13.2.x, on macOS (Monterey); Flutter 2.8.1
+
+## [2.0.0-nullsafety.1] - 2021/04/10
+- Restored testAdUnitId [275](https://github.com/kmcgill88/admob_flutter/commit/54ae1b24b01981834ac4d7020efaf96345a86d77)
+- Add SSV data support to RewardedVideoAd [274](https://github.com/kmcgill88/admob_flutter/pull/274)
+
+## [2.0.0-nullsafety.0] - 2021/03/06
+- Migrate to null saftey!
+- Update example to null saftey!
+- Update Bitrise build machine to Xcode 12.5.x, on macOS 11.2 (Big Sur); Flutter 2.0.0
+
 ## [1.0.1] - 2020/10/27
 - Added testAdUnitId getter for Banner, Interstitial and Reward ads. PR[227](https://github.com/kmcgill88/admob_flutter/pull/227). Thank you [DoctorJohn](https://github.com/DoctorJohn)!
 - Fixes typo in README.md PR[224](https://github.com/kmcgill88/admob_flutter/pull/224). Thank you [Skyost](https://github.com/Skyost)!
